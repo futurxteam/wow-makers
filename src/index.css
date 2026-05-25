@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-gold-400: #E5C158;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #B5952F;
+  --color-matte-black: #070707;
+  --color-charcoal-900: #111111;
+  --color-charcoal-800: #1A1A1A;
+  --color-charcoal-700: #222222;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  .box-glow {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+  }
+  .box-glow-hover:hover {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+  }
+  .text-gradient {
+    background: linear-gradient(to right, #D4AF37, #FFF5C3, #D4AF37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+body {
+  background-color: var(--color-matte-black);
+  color: white;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: #000;
+}
