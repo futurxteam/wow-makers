@@ -3,12 +3,12 @@ import { Logo } from './Logo';
 
 export function Footer() {
   return (
-    <footer className="bg-matte-black pt-20 pb-10 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 font-sans md:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-matte-black pt-16 md:pt-20 pb-10 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 font-sans md:grid-cols-4 gap-12 mb-12 md:mb-16">
         
         {/* Brand */}
         <div className="md:col-span-2">
-          <a href="#home" className="inline-block mb-8">
+          <a href="#home" className="inline-block mb-6 md:mb-8">
             <Logo variant="footer" />
           </a>
           <p className="text-gray-400 font-light max-w-sm mb-8">
