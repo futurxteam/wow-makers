@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 export function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 bg-charcoal-900 relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 overflow-hidden">
 
         {/* Info */}
         <div>
@@ -14,7 +14,7 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <span className="uppercase tracking-[0.2em] text-gold-500 text-xs block mb-4">Let's Connect</span>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-display tracking-widest text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display tracking-normal md:tracking-widest text-white mb-6 break-words">
               START THE<br />
               <span className="text-gradient">CONVERSATION</span>
             </h2>
@@ -72,8 +72,8 @@ export function Contact() {
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="bg-matte-black p-8 md:p-12 border border-white/5 relative"
-        >
+          className="bg-matte-black p-6 md:p-10 border border-white/5 relative box-border w-full max-w-full overflow-hidden"
+>
           {/* Gold accent corner */}
           <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-gold-500" />
 
