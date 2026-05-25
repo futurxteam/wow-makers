@@ -161,10 +161,10 @@ export function About() {
       {/* ════════════════════════════════════════════ */}
       {/*  MAIN GRID                                  */}
       {/* ════════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-28 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
 
         {/* ── LEFT: Cinematic layered image stack ── */}
-        <div className="relative h-[560px] lg:h-[680px]">
+        <div className="relative h-[400px] sm:h-[500px] lg:h-[680px]">
 
           {/* Main tall image — slight CCW tilt, expands on hover */}
           <motion.div
@@ -225,8 +225,8 @@ export function About() {
           </motion.div>
 
           {/* Floating glass badges */}
-          <GlassBadge label="500+" sub="Events Executed" delay={0.4} className="bottom-[28%] left-[-8%]" />
-          <GlassBadge label="VIP" sub="Experiences" delay={0.55} className="top-[50%] right-[-6%]" />
+          <GlassBadge label="500+" sub="Events Executed" delay={0.4} className="bottom-[18%] sm:bottom-[28%] left-0 sm:left-[-8%]" />
+          <GlassBadge label="VIP" sub="Experiences" delay={0.55} className="top-[50%] right-0 sm:right-[-6%]" />
 
           {/* Vertical gold accent line */}
           <motion.div
@@ -273,7 +273,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-[3.4rem] font-display tracking-[0.04em] leading-[0.95] mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-display tracking-[0.04em] leading-[1.1] md:leading-[0.95] mb-6 md:mb-8"
           >
             <span className="text-white block">ELEVATING MOMENTS</span>
             <span className="text-white block">INTO</span>
@@ -301,7 +301,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-5 text-gray-400 text-base leading-relaxed font-light"
+            className="space-y-4 md:space-y-5 text-gray-400 text-sm md:text-base leading-relaxed font-light"
           >
             <p>
               At <span className="text-gold-400 font-semibold tracking-wide">WOW MAKERS</span>, we don't just plan events — we architect multi-sensory experiences that transcend expectation. With over a decade of mastery across the globe's most prestigious luxury weddings, corporate summits, and exclusive VIP gatherings, we guarantee execution that is nothing short of flawless.
@@ -330,7 +330,7 @@ export function About() {
           </motion.div>
 
           {/* ── Animated stats row ── */}
-          <div className="mt-12 pt-8 border-t border-white/8 flex items-start gap-10 flex-wrap">
+          <div className="mt-10 md:mt-12 pt-8 border-t border-white/8 flex items-start gap-8 md:gap-10 flex-wrap">
             <StatItem value={10}  suffix="+"  label="Years Legacy"     delay={0.45} />
             <StatItem value={500} suffix="+"  label="Events Executed"  delay={0.55} />
             <StatItem value={15}  suffix=""   label="Global Cities"    delay={0.65} />
@@ -344,7 +344,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.55 }}
-            className="group inline-flex items-center gap-2.5 mt-10 px-7 py-3.5 border border-gold-500/30 hover:border-gold-400/70 bg-black/30 backdrop-blur-sm text-xs font-bold uppercase tracking-[0.25em] text-white hover:text-gold-400 rounded-sm transition-all duration-300 box-glow-hover"
+            className="group inline-flex items-center justify-center w-full sm:w-auto gap-2.5 mt-10 px-7 py-3.5 border border-gold-500/30 hover:border-gold-400/70 bg-black/30 backdrop-blur-sm text-xs font-bold uppercase tracking-[0.25em] text-white hover:text-gold-400 rounded-sm transition-all duration-300 box-glow-hover"
           >
             <span>Discover Our Services</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-gold-400" />

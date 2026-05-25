@@ -103,19 +103,22 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
     setCoords({ x: 0, y: 0 });
   };
 
+  const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const showDetails = isHovered || isTouchDevice;
+
   // Dynamic grid column and height definitions for an editorial asymmetrical rhythm
   let gridClasses = "";
   if (service.size === 'featured') {
-    gridClasses = "lg:col-span-8 lg:row-span-2 md:col-span-2 md:row-span-2 h-[540px] lg:h-full";
+    gridClasses = "lg:col-span-8 lg:row-span-2 md:col-span-2 md:row-span-2 aspect-[4/5] sm:aspect-square md:aspect-auto md:h-full";
   } else {
-    gridClasses = "lg:col-span-4 lg:row-span-1 md:col-span-1 md:row-span-1 h-[260px] lg:h-full";
+    gridClasses = "lg:col-span-4 lg:row-span-1 md:col-span-1 md:row-span-1 aspect-[4/3] md:aspect-auto md:h-full";
   }
 
   // 3D tilt coordinates
-  const rotateX = isHovered ? coords.y * -8 : 0;
-  const rotateY = isHovered ? coords.x * 8 : 0;
-  const imgX = isHovered ? coords.x * -10 : 0;
-  const imgY = isHovered ? coords.y * -10 : 0;
+  const rotateX = !isTouchDevice && isHovered ? coords.y * -8 : 0;
+  const rotateY = !isTouchDevice && isHovered ? coords.x * 8 : 0;
+  const imgX = !isTouchDevice && isHovered ? coords.x * -10 : 0;
+  const imgY = !isTouchDevice && isHovered ? coords.y * -10 : 0;
   const glowX = isHovered ? (coords.x + 0.5) * 100 : 50;
   const glowY = isHovered ? (coords.y + 0.5) * 100 : 50;
 
@@ -145,7 +148,7 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
           alt={service.title}
           className="w-full h-full object-cover transition-transform duration-700 ease-out"
           style={{
-            transform: `scale(${isHovered ? 1.12 : 1.02}) translate3d(${imgX}px, ${imgY}px, 0)`,
+            transform: `scale(${!isTouchDevice && isHovered ? 1.12 : 1.02}) translate3d(${imgX}px, ${imgY}px, 0)`,
           }}
           loading="lazy"
         />
@@ -153,16 +156,16 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
 
       {/* Dark Blur Overlay - tuned gradient and opacity to preserve image visibility */}
       <div
-        className="absolute inset-0 transition-all duration-500 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none"
+        className="absolute inset-0 transition-all duration-500 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"
         style={{
-          backdropFilter: isHovered ? 'blur(5px)' : 'blur(0px)',
-          backgroundColor: isHovered ? 'rgba(7, 7, 7, 0.55)' : 'rgba(7, 7, 7, 0.12)',
+          backdropFilter: showDetails ? 'blur(5px)' : 'blur(0px)',
+          backgroundColor: showDetails ? 'rgba(7, 7, 7, 0.45)' : 'rgba(7, 7, 7, 0.1)',
         }}
       />
 
       {/* Spotlight Effect */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-screen"
+        className="absolute inset-0 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-screen"
         style={{
           background: `radial-gradient(circle 250px at ${glowX}% ${glowY}%, rgba(229, 193, 88, 0.14), transparent 80%)`,
         }}
@@ -182,22 +185,22 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
       </div>
 
       {/* Content wrapper */}
-      <div className="relative z-10 p-6 md:p-8 w-full flex flex-col justify-end pointer-events-none transition-all duration-500">
+      <div className="relative z-10 p-5 md:p-8 w-full flex flex-col justify-end pointer-events-none transition-all duration-500 h-full">
         
         {/* Animated Line Reveal */}
         <div 
-          className="h-[1.5px] bg-gradient-to-r from-gold-500/70 to-transparent mb-4.5 transition-all duration-700 ease-out" 
+          className="h-[1.5px] bg-gradient-to-r from-gold-500/70 to-transparent mb-3 md:mb-4.5 transition-all duration-700 ease-out" 
           style={{
-            width: isHovered ? '100%' : '35%',
+            width: showDetails ? '100%' : '35%',
           }}
         />
 
         {/* Cinematic Title */}
         <h3 
-          className="font-display tracking-[0.05em] uppercase text-3xl lg:text-4xl text-white mb-1.5 transform transition-all duration-500 ease-out"
+          className="font-display tracking-[0.05em] uppercase text-2xl sm:text-3xl lg:text-4xl text-white mb-1.5 transform transition-all duration-500 ease-out"
           style={{
-            transform: isHovered ? 'translateY(0)' : 'translateY(4px)',
-            textShadow: isHovered ? '0 0 15px rgba(212, 175, 55, 0.25)' : 'none',
+            transform: showDetails ? 'translateY(0)' : 'translateY(4px)',
+            textShadow: showDetails ? '0 0 15px rgba(212, 175, 55, 0.25)' : 'none',
           }}
         >
           {service.title}
@@ -207,10 +210,10 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
         <p
           className="text-xs lg:text-sm tracking-wider text-gray-300 font-light overflow-hidden transition-all duration-500 ease-out"
           style={{
-            maxHeight: isHovered ? '90px' : '0px',
-            opacity: isHovered ? 1 : 0,
-            transform: isHovered ? 'translateY(0)' : 'translateY(12px)',
-            marginTop: isHovered ? '8px' : '0px',
+            maxHeight: showDetails ? '90px' : '0px',
+            opacity: showDetails ? 1 : 0,
+            transform: showDetails ? 'translateY(0)' : 'translateY(12px)',
+            marginTop: showDetails ? '8px' : '0px',
           }}
         >
           {service.desc}
@@ -218,16 +221,16 @@ function ServicesCard({ service, index, onHover, onHoverIndex }: CardProps) {
 
         {/* Animated Arrow Circle */}
         <div 
-          className="mt-4 flex items-center justify-center w-9 h-9 rounded-full border bg-black/50 backdrop-blur-md transition-all duration-500 ease-out"
+          className="mt-4 flex items-center justify-center w-8 h-8 md:w-9 md:h-9 rounded-full border bg-black/50 backdrop-blur-md transition-all duration-500 ease-out"
           style={{
-            borderColor: isHovered ? 'rgba(229, 193, 88, 0.6)' : 'rgba(255, 255, 255, 0.1)',
-            transform: isHovered ? 'translateX(6px) scale(1.05)' : 'translateX(0) scale(1)',
+            borderColor: showDetails ? 'rgba(229, 193, 88, 0.6)' : 'rgba(255, 255, 255, 0.1)',
+            transform: showDetails ? 'translateX(6px) scale(1.05)' : 'translateX(0) scale(1)',
           }}
         >
           <ArrowUpRight 
             className="w-3.5 h-3.5 transition-all duration-500" 
             style={{
-              color: isHovered ? '#E5C158' : '#ffffff',
+              color: showDetails ? '#E5C158' : '#ffffff',
             }}
           />
         </div>
@@ -313,7 +316,7 @@ export function Services() {
       </motion.div>
 
       {/* Header Container */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-12 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-8 relative z-10">
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
@@ -321,10 +324,10 @@ export function Services() {
               Our Creative Domains
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display tracking-[0.05em] text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display tracking-[0.05em] text-white">
             SIGNATURE <span className="text-gradient">SERVICES</span>
           </h2>
-          <p className="text-gray-400 text-sm max-w-lg tracking-wider font-light mt-3 leading-relaxed">
+          <p className="text-gray-400 text-sm md:text-base max-w-lg tracking-wider font-light mt-3 leading-relaxed">
             We deliver exceptional events across six dedicated segments, each marked by striking custom scenography, robust production, and global expertise.
           </p>
         </div>
@@ -332,7 +335,7 @@ export function Services() {
 
       {/* Asymmetrical Grid Services Section */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 auto-rows-[260px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-6 auto-rows-auto md:auto-rows-[260px]">
           {services.map((service, index) => (
             <ServicesCard
               key={service.id}

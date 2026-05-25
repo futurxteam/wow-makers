@@ -31,7 +31,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-display tracking-wide leading-[0.9] text-white mb-8"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display tracking-wide leading-[1.1] sm:leading-[0.9] text-white mb-6 md:mb-8"
         >
           WE DON'T ORGANIZE EVENTS. <br />
           <span className="text-gradient">WE CREATE EXPERIENCES.</span>
@@ -41,18 +41,18 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 w-full max-w-sm sm:max-w-none mx-auto"
         >
           <a
             href="#contact"
-            className="flex items-center space-x-2 bg-gold-500 text-black px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white transition-colors duration-300 box-glow"
+            className="flex items-center justify-center w-full sm:w-auto space-x-2 bg-gold-500 text-black px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-white transition-colors duration-300 box-glow"
           >
             <span>Book Consultation</span>
             <ChevronRight size={18} />
           </a>
           <a
             href="#about"
-            className="flex items-center space-x-2 border border-white/30 hover:border-gold-500 bg-black/20 backdrop-blur-sm text-white px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:text-gold-500 transition-colors duration-300"
+            className="flex items-center justify-center w-full sm:w-auto space-x-2 border border-white/30 hover:border-gold-500 bg-black/20 backdrop-blur-sm text-white px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:text-gold-500 transition-colors duration-300"
           >
             <span>Explore Events</span>
           </a>
